@@ -1,0 +1,23 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="vn.edu.ntu.trantiencao.myshoppingcart.MainActivity">
+
+    <item
+        android:orderInCategory="100"
+        android:title="this is going to coding.."
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_back"
+        android:orderInCategory="100"
+        android:title="BACK"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_exit"
+        android:orderInCategory="100"
+        android:title="Exit"
+        app:showAsAction="never" />
+
+</menu>
