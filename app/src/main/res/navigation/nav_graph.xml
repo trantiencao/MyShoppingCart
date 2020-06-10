@@ -7,23 +7,49 @@
 
     <fragment
         android:id="@+id/FirstFragment"
-        android:name="vn.edu.ntu.trantiencao.myshoppingcart.FirstFragment"
-        android:label="@string/first_fragment_label"
+        android:name="vn.edu.ntu.trantiencao.myshoppingcart.Fragment_first"
+        android:label="Fragment First"
         tools:layout="@layout/fragment_first">
 
         <action
-            android:id="@+id/action_FirstFragment_to_SecondFragment"
-            app:destination="@id/SecondFragment" />
+            android:id="@+id/action_FirstFragment_to_ListProductFragment"
+            app:destination="@id/ListProductFragment" />
     </fragment>
 
     <fragment
-        android:id="@+id/SecondFragment"
-        android:name="vn.edu.ntu.trantiencao.myshoppingcart.SecondFragment"
-        android:label="@string/second_fragment_label"
-        tools:layout="@layout/fragment_second">
+        android:id="@+id/Fragment_cart"
+        android:name="vn.edu.ntu.trantiencao.myshoppingcart.Fragment_cart"
+        android:label="Fragment Second"
+        tools:layout="@layout/fragment_cart">
+        <action
+            android:id="@+id/action_Fragment_cart_to_ListProductFragment"
+            app:destination="@id/ListProductFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/ListProductFragment"
+        android:name="vn.edu.ntu.trantiencao.myshoppingcart.Fragment_list_product"
+        android:label="Fragment List Product"
+        tools:layout="@layout/fragment_list_product">
 
         <action
-            android:id="@+id/action_SecondFragment_to_FirstFragment"
+            android:id="@+id/action_ListProductFragment_to_fragment_add_product"
+            app:destination="@id/fragment_add_product" />
+        <action
+            android:id="@+id/action_ListProductFragment_to_Fragment_cart"
+            app:destination="@id/Fragment_cart" />
+        <action
+            android:id="@+id/action_ListProductFragment_to_FirstFragment"
             app:destination="@id/FirstFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragment_add_product"
+        android:name="vn.edu.ntu.trantiencao.myshoppingcart.Fragment_add_product"
+        android:label="fragment_add_product"
+        tools:layout="@layout/fragment_add_product">
+
+        <action
+            android:id="@+id/action_fragment_add_product_to_ListProductFragment"
+            app:destination="@id/ListProductFragment" />
     </fragment>
 </navigation>

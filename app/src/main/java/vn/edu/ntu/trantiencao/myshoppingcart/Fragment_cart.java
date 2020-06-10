@@ -2,6 +2,9 @@ package vn.edu.ntu.trantiencao.myshoppingcart;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -11,14 +14,13 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
-import androidx.navigation.fragment.NavHostFragment;
 
 import java.util.List;
 
 import vn.edu.ntu.trantiencao.controller.ICartController;
 import vn.edu.ntu.trantiencao.model.Product;
 
-public class SecondFragment extends Fragment implements View.OnClickListener {
+public class Fragment_cart extends Fragment implements View.OnClickListener {
     TextView txtShopping;
     Button btnBuy, btnRemove;
     int length;
@@ -26,21 +28,31 @@ public class SecondFragment extends Fragment implements View.OnClickListener {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_second, container, false);
+        View view = inflater.inflate(R.layout.fragment_cart, container, false);
+        return view;
     }
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        view.findViewById(R.id.button_back).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(getActivity(), "Move back to First Fragment", Toast.LENGTH_SHORT).show();
-                NavHostFragment.findNavController(SecondFragment.this).navigate(R.id.action_SecondFragment_to_FirstFragment);
-            }
-        });
-
         initViews();
+    }
+
+//    @Override
+//    public void onAttach(@NonNull Context context) {
+//        super.onAttach(context);
+//        controller = NavHostFragment.findNavController(this);
+//    }
+
+    @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        inflater.inflate(R.menu.menu_main, menu);
+        super.onCreateOptionsMenu(menu, inflater);
+    }@Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.action_exit) System.exit(0);
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
@@ -50,12 +62,12 @@ public class SecondFragment extends Fragment implements View.OnClickListener {
             case R.id.btnBuy:
                 if(length > 0) {
                     clear();
-                    Toast.makeText(getActivity(), "Thank you for your purchases!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), "Cảm ơn bạn đã mua hàng!", Toast.LENGTH_SHORT).show();
                 }
                 break;
             case R.id.btnRemove:
                 clear();
-                Toast.makeText(getActivity(), "Your cart removed!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "Giỏ hàng của bạn đã bị xóa!", Toast.LENGTH_SHORT).show();
                 break;
         }
     }
@@ -75,6 +87,12 @@ public class SecondFragment extends Fragment implements View.OnClickListener {
         btnRemove = activity.findViewById(R.id.btnRemove);
         btnBuy.setOnClickListener(this);
         btnRemove.setOnClickListener(this);
+        activity.findViewById(R.id.imgCart).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getActivity(),"Bạn đang ở trong giỏ hàng!",Toast.LENGTH_SHORT).show();
+            }
+        });
         showShoppingCart();
     }
 
